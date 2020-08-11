@@ -2,9 +2,14 @@ const knex = require('../database/connection.js');
 
 module.exports = {
 
-  async index(request, response) {
-    const results = await knex('users')
-    return response.json(results)
+  async index(request, response, next) {
+    try {
+      const results = await knex('users');
+      return response.json(results);
+
+    } catch (error) {
+      next(error);
+    }
   },
 
   async create(request, response, next) {
@@ -19,10 +24,8 @@ module.exports = {
 
       return response.status(201).send()
     } catch (error) {
-      next(error)
+      next(error);
     }
-
-    console.log(result)
   },
 
   async show(request, response, next) {
@@ -48,11 +51,11 @@ module.exports = {
 
       await knex('users')
       .update({ username, password })
-      .where({ id })
+      .where({ id });
 
       return response.status(200).send();
     } catch (error) {
-      next(error)
+      next(error);
     }
   },
 
