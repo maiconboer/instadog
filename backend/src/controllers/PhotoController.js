@@ -1,5 +1,4 @@
 const knex = require('../database/connection.js');
-const { create } = require('./UserController.js');
 
 module.exports = {
   /* lista todas as fotos, possui paginação 
