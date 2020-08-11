@@ -1,19 +1,26 @@
 const express = require('express');
+const authMiddleware = require('./middlewares/auth');
 
 const routes = express.Router();
 
 const UserController = require('./controllers/UserController');
 const PhotoController = require('./controllers/PhotoController');
+const AuthenticateController = require('./controllers/AuthenticateController');
+const TokenValidadeController = require('./controllers/TokenValidadeController');
+
+// authentication & validate
+routes.post('/authenticate', AuthenticateController.authenticate)
+routes.post('/token/validate', TokenValidadeController.validate)
 
 // users
-routes.get('/users', UserController.index);
 routes.post('/users', UserController.create);
+routes.get('/users', UserController.index);
 routes.get('/users/:id', UserController.show);
-routes.put('/users/:id', UserController.update);
-routes.delete('/users/:id', UserController.delete);
+routes.put('/users/:id', authMiddleware, UserController.update);
+routes.delete('/users/:id', authMiddleware, UserController.delete);
 
 // photos
-routes.get('/photos', PhotoController.index);
-routes.post('/photos', PhotoController.create);
+routes.get('/photos', authMiddleware, PhotoController.index);
+routes.post('/photos', authMiddleware, PhotoController.create);
 
 module.exports = routes;

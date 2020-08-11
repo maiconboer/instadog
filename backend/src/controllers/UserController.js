@@ -1,4 +1,6 @@
 const knex = require('../database/connection.js');
+const bcrypt = require('bcryptjs');
+const newToken = require('../services/generateToken');
 
 module.exports = {
 
@@ -12,17 +14,39 @@ module.exports = {
     }
   },
 
-  async create(request, response, next) {
+  async create(request, response, next) {   
     try {
       const { username, email, password } = request.body;
+
+      const userExists = await knex('users')
+      .where({ username })
+
+      const emailExists = await knex('users')
+      .where({ email })
+
+      if(userExists.length > 0) {
+        return response.status(400).json({ error: 'User already exists!' })
+      }
+
+      if(emailExists.length > 0) {
+        return response.status(400).json({ error: 'Email already exists!' })
+      }
+
+      const hashPassword = await bcrypt.hash(password, 10);
 
       const result = await knex('users').insert({
         username,
         email,
-        password
-      })
+        password: hashPassword
+      }).returning('*')
+ 
+      const user = result[0]
 
-      return response.status(201).send()
+      return response.status(201).json({ 
+        user, 
+        token: newToken.generateToken({ id: user.id }) 
+      });
+
     } catch (error) {
       next(error);
     }

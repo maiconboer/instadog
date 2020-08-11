@@ -16,6 +16,7 @@ module.exports = {
     seeds: {
       directory: `${__dirname}/src/database/seeds`
     },
+    useNullAsDefault: true,
   },
   onUpdateTrigger: table => `
   CREATE TRIGGER ${table}_updated_at
