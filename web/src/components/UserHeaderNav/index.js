@@ -2,25 +2,28 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 import { UserContext } from '../../contexts/UserContext';
+import useMedia from '../../hooks/useMedia';
 
 import { ReactComponent as MinhasFotos } from '../../assets/icons/feed.svg';
 import { ReactComponent as Estatisticas } from '../../assets/icons/estatisticas.svg';
 import { ReactComponent as AdicionarFoto } from '../../assets/icons/adicionar.svg';
 import { ReactComponent as Sair } from '../../assets/icons/sair.svg';
 
-import { Container } from './styles';
+import { Container, ContainerMobile, MenuButton } from './styles';
 
 const UserHeaderNav = () => {
-  const [mobile, setMobile] = React.useState(null);
-
   const { userLogout } = React.useContext(UserContext);
+  const [mobileMenu, setMobileMenu] = React.useState(false);
 
-  return (
-    <Container>
-      <NavLink to='/my-account' activeClassName={Container.active}>
-        <MinhasFotos />
-        { mobile && 'Minhas fotos' }
-      </NavLink>
+  const mobile = useMedia('(max-width: 40rem)');
+  
+  function showContent() {
+    return (
+      <>
+        <NavLink to='/my-account' activeClassName={Container.active}>
+          <MinhasFotos />
+          { mobile && 'Minhas fotos' }
+        </NavLink>
 
       <NavLink to='/user/statistics' activeClassName={Container.active}>
         <Estatisticas />
@@ -36,7 +39,23 @@ const UserHeaderNav = () => {
         <Sair />
         { mobile && 'Sair' }
       </button>
-    </Container>
+      </>
+    )
+  }
+
+  return (
+    <>
+      {mobile && 
+        <MenuButton 
+          aria-label='Menu' 
+          onClick={() => setMobileMenu(!mobileMenu)}
+          className={mobileMenu && 'mobileButtonActive'}> 
+        </MenuButton>
+      }
+      
+      {!mobile && <Container>{showContent()}</Container>}
+      {mobileMenu && <ContainerMobile>{showContent()}</ContainerMobile>}
+    </>
   )
 }
 
