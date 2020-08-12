@@ -9,6 +9,8 @@ import Page404 from '../pages/Page404';
 import Login from '../pages/Login';
 import CreateAccount from '../pages/CreateAccount';
 import MyAccount from '../pages/MyAccount';
+import PostPhoto from '../pages/PostPhoto';
+import Statistics from '../pages/Statistics';
 
 // components
 import LostPassword from '../components/LostPassword';;
@@ -36,9 +38,11 @@ const Routes = () => {
      
       <PrivateRoute path='/' exact component={Home} />
       <PrivateRoute path='/my-account' component={MyAccount} />
+      <PrivateRoute path='/user/post-photo' component={PostPhoto} />
+      <PrivateRoute path='/user/statistics' component={Statistics} />
 
-      <Route path='/login' exact component={Login} />
       <Route path='/create-account' component={CreateAccount} />
+      <Route path='/login' exact component={Login} />
       <Route path='/login/lost-password' component={LostPassword} />
       <Route path='*' component={Page404} /> 
       

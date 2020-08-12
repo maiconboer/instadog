@@ -8,7 +8,7 @@ import { Container, Navigation } from './styles';
 import {ReactComponent as DogIcon} from '../../assets/icons/dogs.svg';
  
 const Header = () => {
-  const { data, userLogout } = React.useContext(UserContext);
+  const { data } = React.useContext(UserContext);
 
   return (
     <Container>
@@ -22,7 +22,6 @@ const Header = () => {
           ? 
           <> 
             <Link to='/my-account' className='login'>{data.username}</Link>
-            <button onClick={userLogout} >Sair</button>
           </>
           : <Link to='/login' className='login'>Login / Sign Up</Link>
         }

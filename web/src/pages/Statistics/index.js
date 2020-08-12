@@ -2,16 +2,16 @@ import React from 'react';
 
 import UserHeader from '../../components/UserHeader';
 
-import { Container } from './styles.js'
+import { Container } from './styles.js';
 
-const MyAccount = () => {
+const Statistics = () => {
   return (
     <Container className='container'>
-      <UserHeader title={'Minha conta'} />
+      <UserHeader title={'Estatisticas'} />
       
       
     </Container>
   )
 }
 
-export default MyAccount;
+export default Statistics;

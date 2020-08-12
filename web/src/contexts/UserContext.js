@@ -23,7 +23,7 @@ export const UserAuth = ({children}) => {
     history.push('/login');
   }, [history]);
 
-  // Se possuir token válido, faz o login automático (expira 24h)
+  // Se houver token válido, login automático, se não, login=false
   React.useEffect(() => {
     async function automaticLogin() {
 
@@ -53,6 +53,9 @@ export const UserAuth = ({children}) => {
         } finally {
           setLoading(false);
         }
+
+      } else {
+        setLogin(false);
       }
     }
 

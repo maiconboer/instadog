@@ -1,5 +1,4 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
 import api from '../../services/api';
 
 import Input from '../../components/Input';
@@ -16,21 +15,25 @@ const CreateAccount = () => {
   const email = useForm('email');
   const password = useForm('password');
 
-  const history = useHistory();
-
   const [error, setError] = React.useState(null);
-  const { userLogin } = React.useContext(UserContext);
+  const [loading, setLoading] = React.useState(false);
+  const {userLogin} = React.useContext(UserContext);
 
   async function handleCreateUser(event) {
     event.preventDefault();
+    let response;
     
     try {
+      setError(null);
+      setLoading(true);
+
       const user = {
         username: username.value,
         email: email.value,
         password: password.value
       }
-      const response = await api.post('/users', user, {
+
+      response = await api.post('/users', user, {
         headers: {
           'Content-Type': 'application/json'
         }
@@ -40,16 +43,24 @@ const CreateAccount = () => {
       if(response.status === 201) {
         userLogin(email.value, password.value)
       }
-
+      
     } catch (error) {
-      setError(error.message = 'Dados já existentes!')
+        response = null; 
+
+        if(username.value === '' || email.value === '' || password.value === '') {
+          setError(error.message = 'Preencha todos os campos!');
+        } else {
+          setError(error.message = 'Dados já existentes!');
+        }
+
+    } finally {
+      setLoading(false);
     }
   }
 
   return (
     <Container className='animeLeft'>
       <div className='container-form'>
-
         <h1 className='title'>Cadastre-se</h1>
 
         <form onSubmit={handleCreateUser}>
@@ -74,8 +85,11 @@ const CreateAccount = () => {
             {...password}
           />
 
-          <Button type='submit'>Cadastrar</Button>
-
+          {loading 
+           ? <Button disabled>Cadastrando...</Button>
+           : <Button type='submit'>Cadastrar</Button>
+          }
+          
           {error && <Error error={error} />}
 
         </form>
