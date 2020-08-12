@@ -7,15 +7,19 @@ import Button from '../../components/Button';
 import Error from '../../components/Error';
 import useForm from '../../hooks/useForm';
 
+import { UserContext } from '../../contexts/UserContext';
+
 import { Container } from './styles';
 
 const CreateAccount = () => {  
   const username = useForm();
   const email = useForm('email');
   const password = useForm('password');
-  const [error, setError] = React.useState(null);
 
   const history = useHistory();
+
+  const [error, setError] = React.useState(null);
+  const { userLogin } = React.useContext(UserContext);
 
   async function handleCreateUser(event) {
     event.preventDefault();
@@ -32,9 +36,9 @@ const CreateAccount = () => {
         }
       })
       
+      // se sucesso no cadastro, já faz login automático
       if(response.status === 201) {
-        alert('usuário criado com sucesso, redirecionando para login, MELHORAR ESTÁ PARTE')
-        history.push('/login');
+        userLogin(email.value, password.value)
       }
 
     } catch (error) {
