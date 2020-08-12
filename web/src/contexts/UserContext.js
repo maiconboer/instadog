@@ -12,7 +12,7 @@ export const UserAuth = ({children}) => {
   const [error, setError] = React.useState(null);
   const history = useHistory();
 
-  // Deslogando user
+  // Deslogando user - remove dados do estado, token e etc
   const userLogout = React.useCallback(async () => {
     setData(null);
     setError(null);
@@ -23,7 +23,7 @@ export const UserAuth = ({children}) => {
     history.push('/login');
   }, [history]);
 
-  // se possuir token válido, faz o login automático (expira 24h)
+  // Se possuir token válido, faz o login automático (expira 24h)
   React.useEffect(() => {
     async function automaticLogin() {
 
@@ -59,7 +59,7 @@ export const UserAuth = ({children}) => {
     automaticLogin();
   },[history, userLogout])
 
-  // Post do token, retorna dados do usuário
+  // Enviando token, retorna dados do usuário, armazena no estado
   async function getUser(token, id) {
 
     const response = await api.get(`/users/${id}`, {
@@ -72,7 +72,7 @@ export const UserAuth = ({children}) => {
     setLogin(true); 
   }
 
-  // Logando na aplicação - token retornado como resposta
+  // Logando na aplicação - retorna um token como resposta
   async function userLogin(email, password) {
     const user = { email, password }
 
@@ -85,10 +85,6 @@ export const UserAuth = ({children}) => {
           'Content-Type': 'application/json'
         }
       });
-    
-      if(responseToken.status !== 200) {
-        throw new Error(`Error: ${responseToken.statusText}`);
-      }
       
       const { token } = responseToken.data;
       const { id } = responseToken.data.user[0];
@@ -100,7 +96,7 @@ export const UserAuth = ({children}) => {
       history.push('/');
 
     } catch (error) {
-      setError(error.message);
+      setError(error.message = 'Dados incorretos!');
       setLogin(false);
 
     } finally {
