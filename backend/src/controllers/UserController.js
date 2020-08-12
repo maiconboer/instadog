@@ -18,6 +18,10 @@ module.exports = {
     try {
       const { username, email, password } = request.body;
 
+      if(username === '' || email === '' || password === '') {
+        return response.status(422).json({ error: 'Please fill in all fields!' })
+      }
+
       const userExists = await knex('users')
       .where({ username })
 
