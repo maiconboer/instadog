@@ -14,8 +14,8 @@ routes.post('/token/validate', TokenValidadeController.validate)
 
 // users
 routes.post('/users', UserController.create);
-routes.get('/users', UserController.index);
-routes.get('/users/:id', UserController.show);
+routes.get('/users', authMiddleware, UserController.index);
+routes.get('/users/:id', authMiddleware, UserController.show);
 routes.put('/users/:id', authMiddleware, UserController.update);
 routes.delete('/users/:id', authMiddleware, UserController.delete);
 
