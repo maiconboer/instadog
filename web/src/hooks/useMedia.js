@@ -4,19 +4,13 @@ import React from 'react'
 const useMedia = (media) => {
   const [match, setMatch] = React.useState(null);
 
-  
-
-  React.useEffect(() => {
-
-    
+  React.useEffect(() => {  
     function changeMatch() {
       const {matches} = window.matchMedia(media);
       setMatch(matches);
     }
 
-    if(window.innerWidth < 640) {
-      setMatch(true)
-    }
+    changeMatch();
 
     window.addEventListener('resize', changeMatch);
 
