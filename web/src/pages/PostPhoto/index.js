@@ -1,5 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
+
+// import Resizer from 'react-image-file-resizer';
 import api from '../../services/api';
 
 import { UserContext } from '../../contexts/UserContext';
