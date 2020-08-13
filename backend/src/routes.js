@@ -22,8 +22,9 @@ routes.put('/users/:id', authMiddleware, UserController.update);
 routes.delete('/users/:id', authMiddleware, UserController.delete);
 
 // photos
-routes.get('/photos', authMiddleware, PhotoController.index);
 routes.post('/photos', multer(multerConfig).single('file'), authMiddleware, PhotoController.create);
+routes.get('/photos', authMiddleware, PhotoController.index);
+routes.get('/photos/:id', authMiddleware, PhotoController.show);
 routes.delete('/photos/:id', authMiddleware, PhotoController.delete);
 
 

@@ -1,5 +1,6 @@
 const knex = require('../database/connection.js');
 const middlewareRemove = require('../middlewares/removeImageAmazonS3');
+const { show } = require('./UserController.js');
 
 module.exports = {
   /* lista todas as fotos, possui paginação 
@@ -36,6 +37,42 @@ module.exports = {
     }
   },
 
+  async show(request, response, next){  
+    const { id } = request.params;
+    try {
+      const dataPhoto = await knex('photos')   
+      .join('users', 'photos.user_id', '=' , 'users.id')
+      .where('photos.id', id)
+      .select('photos.*', 'users.username')
+      
+
+      // const dataPhoto = await knex('photos')
+      // .join('users', 'photos.user_id', '=' , 'users.id')
+      // .select('photos.*', 'users.username')
+      // .where('photos.id' , '=' `${id}`)
+      
+      
+      const dataComments = await knex('comments')
+      .where({ photo_id: id })
+
+      console.log(dataPhoto)
+
+      if(dataPhoto.length === 0) {
+        return response.status(400).send('Image does not exist!');
+      }
+
+      const results = {
+        dataPhoto, 
+        dataComments
+      }
+
+      return response.status(200).json(results)
+
+    } catch (error) {
+      next(error);
+    }
+  },
+
   /* recebe descrição, user_id e imagefile do front.
    * nas rotas temos o multer como middlware, que intercepta e
    * trabalha com a imagem, realizando upload para amazonS3
@@ -55,14 +92,14 @@ module.exports = {
         user_id
       });
 
-      console.log({
-        image_url: location,
-        description,
-        name,
-        size,
-        key,
-        user_id
-      })
+      // console.log({
+      //   image_url: location,
+      //   description,
+      //   name,
+      //   size,
+      //   key,
+      //   user_id
+      // })
 
       return response.status(201).send();
 
