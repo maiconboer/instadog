@@ -36,17 +36,29 @@ module.exports = {
   },
 
   async create(request, response, next) {
+
     try {
 
-      const { image_url, description, user_id } = request.body
-
-      console.log(image_url, description, user_id)
-      
+      const { description, id: user_id } = request.body
+      const { originalname: name, size, key, location } = request.file  
+ 
       await knex('photos').insert({
-        image_url,
+        image_url: location,
         description,
+        name,
+        size,
+        key,
         user_id
       });
+
+      console.log({
+        image_url: location,
+        description,
+        name,
+        size,
+        key,
+        user_id
+      })
 
       return response.status(201).send();
 

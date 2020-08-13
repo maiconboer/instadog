@@ -3,8 +3,11 @@ const { onUpdateTrigger } = require('../../../knexfile');
 exports.up = async knex => 
   knex.schema.createTable('photos', table => {
     table.increments('id').primary();
-    table.string('image_url').notNullable();
+    table.string('image_url');
     table.string('description');
+    table.string('name');
+    table.integer('size');
+    table.string('key');
 
     /* relationship 1:n
      * CASCADE, se remover user, suas fotos são removidas

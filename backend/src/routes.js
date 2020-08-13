@@ -1,4 +1,6 @@
 const express = require('express');
+const multer = require('multer');
+const multerConfig = require('./config/multer');
 const authMiddleware = require('./middlewares/auth');
 
 const routes = express.Router();
@@ -21,6 +23,6 @@ routes.delete('/users/:id', authMiddleware, UserController.delete);
 
 // photos
 routes.get('/photos', authMiddleware, PhotoController.index);
-routes.post('/photos', authMiddleware, PhotoController.create);
+routes.post('/photos', multer(multerConfig).single('file'), authMiddleware, PhotoController.create);
 
 module.exports = routes;
