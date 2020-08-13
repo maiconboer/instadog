@@ -45,7 +45,7 @@ module.exports = {
     try {
       const { description, id: user_id } = request.body
       const { originalname: name, size, key, location } = request.file  
- 
+
       await knex('photos').insert({
         image_url: location,
         description,
