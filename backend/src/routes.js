@@ -24,5 +24,7 @@ routes.delete('/users/:id', authMiddleware, UserController.delete);
 // photos
 routes.get('/photos', authMiddleware, PhotoController.index);
 routes.post('/photos', multer(multerConfig).single('file'), authMiddleware, PhotoController.create);
+routes.delete('/photos/:id', authMiddleware, PhotoController.delete);
+
 
 module.exports = routes;
