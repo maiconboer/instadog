@@ -8,7 +8,7 @@ import Loading from '../Loading';
 
 import { Container } from './styles';
 
-const FeedPhotos = () => {
+const FeedPhotos = ({ setModalPhoto }) => {
   const { data } = React.useContext(UserContext);
 
   const [error, setError] = React.useState(null);
@@ -31,10 +31,8 @@ const FeedPhotos = () => {
             }
           })
 
-          setDataPhotos((dataPhotos) => response.data)
-         
+          setDataPhotos((dataPhotos) => response.data)    
         }
-
         getAllPhotos();
       }   
     } catch (error) {
@@ -51,7 +49,11 @@ const FeedPhotos = () => {
       ? 
         <Container className='animeLeft'>   
           {dataPhotos.map(photo => (
-            <FeedPhotosItem key={photo.id} photo={photo}/>
+            <FeedPhotosItem 
+              key={photo.id} 
+              photo={photo} 
+              setModalPhoto={setModalPhoto}
+            />
           ))}   
         </Container>
     : null }

@@ -2,9 +2,14 @@ import React from 'react';
 
 import { Container } from './styles';
 
-const FeedPhotosItem = ({photo}) => {
+const FeedPhotosItem = ({photo, setModalPhoto}) => {
+
+  function handleClick() {
+    setModalPhoto(photo);
+  }
+
   return (
-    <Container>
+    <Container onClick={handleClick}>
       <img src={photo.image_url} alt={photo.description}/>
       <span>Acessar</span>
     </Container>
