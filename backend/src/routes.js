@@ -7,6 +7,7 @@ const routes = express.Router();
 
 const UserController = require('./controllers/UserController');
 const PhotoController = require('./controllers/PhotoController');
+const CommentController = require('./controllers/CommentController');
 const AuthenticateController = require('./controllers/AuthenticateController');
 const TokenValidadeController = require('./controllers/TokenValidadeController');
 
@@ -27,5 +28,11 @@ routes.get('/photos', authMiddleware, PhotoController.index);
 routes.get('/photos/:id', authMiddleware, PhotoController.show);
 routes.delete('/photos/:id', authMiddleware, PhotoController.delete);
 
+
+// comments
+routes.post('/photos/:id/comments', authMiddleware, CommentController.create);
+routes.get('/photos/:id/comments', authMiddleware, CommentController.index);
+routes.put('/photos/:id/comments/:id', authMiddleware, CommentController.update);
+routes.delete('/photos/:id/comments:id', authMiddleware, CommentController.delete);
 
 module.exports = routes;

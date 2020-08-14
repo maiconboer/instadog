@@ -1,6 +1,5 @@
 const knex = require('../database/connection.js');
 const middlewareRemove = require('../middlewares/removeImageAmazonS3');
-const { show } = require('./UserController.js');
 
 module.exports = {
   /* lista todas as fotos, possui paginação 
