@@ -11,7 +11,6 @@ const PhotoContent = ({dataPhotos}) => {
 
   return (
     <Container>
-      {dataPhoto && console.log(dataPhoto[0])}
       <div className='image'> 
         {dataPhoto && 
         <img 
@@ -47,10 +46,9 @@ const PhotoContent = ({dataPhotos}) => {
         </div>
       }
      
-     {dataComments && console.log(dataComments)}
      {dataComments && 
         <PhotoComments 
-          id={dataPhoto[0].id} 
+          photoID={dataPhoto[0].id} 
           comments={dataComments} 
         />
       }

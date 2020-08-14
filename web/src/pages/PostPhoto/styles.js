@@ -10,6 +10,8 @@ export const Container = styled.section`
 
     .file {
       margin-bottom: 1rem;
+      outline: none;
+      cursor: pointer;
     }
 
     .preview {

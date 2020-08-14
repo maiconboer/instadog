@@ -100,7 +100,7 @@ const PostPhoto = () => {
             {...description}
           />
 
-          <label>Imagem - máx. 2MB
+          <label>máx. 2MB
             <input 
               type='file' 
               name='image_url' 
