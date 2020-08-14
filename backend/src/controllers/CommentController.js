@@ -30,7 +30,7 @@ module.exports = {
         comment,
         user_id,
         photo_id: id
-      })
+      }).returning('*')
       
       return response.status(201).json(results)
 
