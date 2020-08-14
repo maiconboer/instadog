@@ -7,7 +7,7 @@ import Loading from '../Loading';
 
 import { Container } from './styles';
 
-const FeedModal = ({photo}) => {
+const FeedModal = ({photo, setModalPhoto}) => {
 
   const [error, setError] = React.useState(null);
   const [loading, setLoading] = React.useState(false);
@@ -38,8 +38,14 @@ const FeedModal = ({photo}) => {
 
   },[photo])
 
+  function handleOutsideClick(event){
+    if(event.target === event.currentTarget) {
+      setModalPhoto(null);
+    }
+  }
+
   return (
-    <Container>
+    <Container onClick={handleOutsideClick}>
       {error && <Error error={error} />}
       {loading && <Loading />}
 

@@ -19,12 +19,12 @@ const FeedPhotos = ({ setModalPhoto }) => {
 
     const token = window.localStorage.getItem('@dog:token');
     const page = 1
-    const id = 1
+    // const id = 1
 
     try {
       if(token) {
         async function getAllPhotos() {
-          const response = await api.get(`/photos?user_id=${id}&page=${page}`, {
+          const response = await api.get(`/photos?&page=${page}`, {
             headers: {
               Authorization: `Bearer ${token}`,
               cache: 'no-store'
