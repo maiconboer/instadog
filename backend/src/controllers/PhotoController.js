@@ -47,8 +47,6 @@ module.exports = {
       const dataComments = await knex('comments')
       .where({ photo_id: id })
 
-      console.log(dataPhoto)
-
       if(dataPhoto.length === 0) {
         return response.status(400).send('Image does not exist!');
       }
