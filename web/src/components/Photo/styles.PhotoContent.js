@@ -4,7 +4,7 @@ import iconLike from '../../assets/icons/like.svg';
 
 export const Container = styled.div`
   margin: auto;
-  /* height: 40rem; */
+  height: 36rem;
   border-radius: .2rem;
   background-color: var(--color4);
   display: grid;
