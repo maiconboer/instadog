@@ -45,13 +45,6 @@ module.exports = {
       .where('photos.id', id)
       .select('photos.*', 'users.username')
       
-
-      // const dataPhoto = await knex('photos')
-      // .join('users', 'photos.user_id', '=' , 'users.id')
-      // .select('photos.*', 'users.username')
-      // .where('photos.id' , '=' `${id}`)
-      
-      
       const dataComments = await knex('comments')
       .where({ photo_id: id })
 
