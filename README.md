@@ -58,8 +58,6 @@ $ cd backend
 $ yarn install
 # Rode as migrations para criar as tabelas no banco de dados
 $ yarn knex:migrate
-# Inicie o servidor
-$ yarn start
 ```
 
 Importante!
