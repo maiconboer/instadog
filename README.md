@@ -6,9 +6,9 @@ Projeto simulando instagram (para cães)
 # Back-end
 
 * [Tecnologias](#computer-tecnologias)
-* [Banco - Tabelas](#rocket-banco-tabelas)
-* [Funcionalidades](#rocket-Funcionalidades)
-* [Como rodar](#construction_worker-como-rodar)
+* [Banco de dados](🏦🎲-banco-de-dados)
+* [Funcionalidades](#rocket-funcionalidades)
+* [Como rodar/iniciar o servidor](#construction_worker-como-rodar-o-servidor)
 
 
 ## :computer: Tecnologias
@@ -38,7 +38,7 @@ Projeto simulando instagram (para cães)
 - Comentar imagem/fotos
 - Curtir imagem/fotos
 
-## :construction_worker: Como rodar/iniciar o servidor
+## :construction_worker: Como rodar o servidor
 ```bash
 # Clone o Repositorio
 git clone https://github.com/maiconboer/instadog.git
