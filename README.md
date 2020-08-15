@@ -23,7 +23,7 @@ Projeto simulando instagram (para cães)
 - aws-sdk
 - postgresql
 
-## 🏦🎲 Banco de dados
+## :bank::game_die: Banco de dados
 
 - Nome banco: ```dogs_api```
 - Tabelas: ``` users, photos, comments, likes ```
