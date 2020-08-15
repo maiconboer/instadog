@@ -1,4 +1,4 @@
-# instadog
+# instadog (Em construção)
 Projeto simulando instagram (para cães)
 
 ------------------------------------------
