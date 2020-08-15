@@ -10,10 +10,12 @@ const PhotoController = require('./controllers/PhotoController');
 const CommentController = require('./controllers/CommentController');
 const AuthenticateController = require('./controllers/AuthenticateController');
 const TokenValidadeController = require('./controllers/TokenValidadeController');
+const PasswordResetController = require('./controllers/PasswordResetController');
 
-// authentication & validate
+// authentication, validate password-recovery
 routes.post('/authenticate', AuthenticateController.authenticate)
 routes.post('/token/validate', TokenValidadeController.validate)
+routes.post('/password-reset', PasswordResetController.reset)
 
 // users
 routes.post('/users', UserController.create);
@@ -27,7 +29,6 @@ routes.post('/photos', multer(multerConfig).single('file'), authMiddleware, Phot
 routes.get('/photos', authMiddleware, PhotoController.index);
 routes.get('/photos/:id', authMiddleware, PhotoController.show);
 routes.delete('/photos/:id', authMiddleware, PhotoController.delete);
-
 
 // comments
 routes.post('/photos/:id/comments', authMiddleware, CommentController.create);
