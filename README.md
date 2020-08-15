@@ -3,10 +3,11 @@ Projeto simulando instagram (para cães)
 
 ------------------------------------------
 
-# Backend
+# Back-end
 
 * [Tecnologias](#computer-tecnologias)
 * [Banco - Tabelas](#rocket-banco-tabelas)
+* [Funcionalidades](#rocket-Funcionalidades)
 * [Como rodar](#construction_worker-como-rodar)
 
 
@@ -22,18 +23,26 @@ Projeto simulando instagram (para cães)
 - aws-sdk
 - postgresql
 
-## :rocket: Banco-tabelas
+## 🏦🎲 Banco de dados
 
 - Nome banco: ```dogs_api```
 - Tabelas: ``` users, photos, comments, likes ```
 
-## :construction_worker: Como rodar
+## :rocket: Funcionalidades
+
+- Cadastro de usuário
+- Criptografia de senha (bcryptjs)
+- Reset/Redefinição de senha
+- Login (validação-JWT)
+- Upload de imagem/fotos (imagem/fotos para amazon s3, retorna url para armazenar no banco postgresql)
+- Comentar imagem/fotos
+- Curtir imagem/fotos
+
+## :construction_worker: Como rodar/iniciar o servidor
 ```bash
 # Clone o Repositorio
 git clone https://github.com/maiconboer/instadog.git
 ```
-
-### 📦 Rode o Servidor/API
 
 Importante!
 
@@ -75,7 +84,7 @@ Região:  ```Leste dos EUA (Norte da Virgínia)```
 Bloquear acesso público (configurações de bucket): ``` DEIXE TODAS AS OPÇÕES (SÃO 4 OPÇÕES) DESMARCADAS - OU SEJA, NÃO BLOQUEIE NADA ```     
 
 
-**Após criar o Bucket, vamos criar um usuário IAM para ter acesso a este Bucket, poder consumir, enviar as imagens e etc:
+**Após criar o Bucket, vamos criar um usuário IAM para ter acesso a este Bucket, poder consumir, enviar as imagens e etc:**  
 
  Vá em:
  
@@ -84,15 +93,15 @@ Bloquear acesso público (configurações de bucket): ``` DEIXE TODAS AS OPÇÕE
     Nome de usuário: pode escolher o nome desejado
     Tipo de acesso: Escolher o ACESSO PROGRAMÁTICO (assim nos é fornecido uma ID de chave e uma chave secreta para usar a API da AWS)
     
-Avance, em DEFINIR PERMISSÕES, clique em:
+Avance, em **DEFINIR PERMISSÕES**, clique em:  
 
     Anexar políticas existentes de forma direta.
     
-Selecione:
+Selecione:  
 
     AmazonS3FullAccess
     
-Avance algumas vezes e pronto, o usuário é criado e é gerado uma CHAVE DE ACESSO e uma CHAVE DE ACESSO SECRETA.
+Avance algumas vezes e pronto, o usuário é criado e é gerado uma **CHAVE DE ACESSO** e uma **CHAVE DE ACESSO SECRETA**.  
 
 No arquivo ```.env``` criado anteriormente, inserir as configurações para conexão com o **Amazon S3**:    
 
@@ -108,3 +117,6 @@ Finalizamos nossas configurações, podemos executar o backend com o comando: ``
 API rodando no endereço: http://localhost:3333/
 
 ------------------------------------------
+
+# Front-end
+
