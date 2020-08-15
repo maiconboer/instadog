@@ -57,7 +57,7 @@ const Feed = ({userID}) => {
           page={page}
           setModalPhoto={setModalPhoto}
           setInfinite={setInfinite}
-      /> 
+        /> 
       ))}
 
     </Container>

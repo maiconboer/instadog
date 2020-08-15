@@ -24,6 +24,10 @@ export const Container = styled.section`
     }
   }
 
+  .container-form {
+    margin-top: 20vh;
+  }
+
   form {
     margin-bottom: 2rem;
     max-width: 30rem;

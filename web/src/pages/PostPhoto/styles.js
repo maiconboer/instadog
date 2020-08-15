@@ -1,12 +1,15 @@
 import styled from 'styled-components';
 
-export const Container = styled.section`
-  
+export const Container = styled.section` 
   .container-upload {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 2rem;
     margin-bottom: 2rem;
+
+    @media screen and (max-width: 40rem) {
+      grid-template-columns: 1fr;
+    }
 
     .file {
       margin-bottom: 1rem;

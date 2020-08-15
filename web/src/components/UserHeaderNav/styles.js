@@ -36,8 +36,6 @@ export const Container = styled.nav`
       fill: var(--color1);
     }
   }
-  
-  
 `;
 
 export const MenuButton = styled.button`
@@ -80,11 +78,6 @@ export const MenuButton = styled.button`
         box-shadow: 0 8px currentColor, 0 -8px currentColor;
     }
   } 
-
-  .navMobile {
-    color: red;
-    background-color: red;
-  }
 `;
 
 export const ContainerMobile = styled.nav`
@@ -98,6 +91,7 @@ export const ContainerMobile = styled.nav`
   border-radius: .2rem;
   transform: translateX(-10px);
   opacity: 1;
+  z-index: 2000;
   
   a,
   button {

@@ -16,13 +16,13 @@ const UserHeaderNav = () => {
   const [mobileMenu, setMobileMenu] = React.useState(false);
 
   const mobile = useMedia('(max-width: 40rem)');
-  
+
   function showContent() {
     return (
       <>
         <NavLink to='/my-account' activeClassName={Container.active}>
           <MinhasFotos />
-          { mobile && 'Minhas fotos' }
+          { mobile && 'Minhas conta' }
         </NavLink>
 
       <NavLink to='/user/statistics' activeClassName={Container.active}>
@@ -53,8 +53,15 @@ const UserHeaderNav = () => {
         </MenuButton>
       }
       
-      {!mobile && <Container>{showContent()}</Container>}
-      {mobileMenu && <ContainerMobile>{showContent()}</ContainerMobile>}
+      {!mobile && 
+        <Container>{showContent()}</Container>
+      }
+
+      {mobileMenu && 
+        <ContainerMobile className='container-mobile'>
+          {showContent()}
+        </ContainerMobile>
+      }
     </>
   )
 }

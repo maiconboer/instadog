@@ -19,7 +19,7 @@ const FeedPhotos = ({ userID, page, setModalPhoto, setInfinite }) => {
     try {
       setError(null);
       setLoading(true);
-
+  
       if(token) {
         async function getAllPhotos() {
 
@@ -38,7 +38,8 @@ const FeedPhotos = ({ userID, page, setModalPhoto, setInfinite }) => {
               cache: 'no-store'
             }
           })
-        
+          
+      
           if(response && response.status === 200 && response.data.length < showTotal) {
             setInfinite(false);
           }
