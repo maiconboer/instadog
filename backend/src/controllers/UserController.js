@@ -64,6 +64,8 @@ module.exports = {
       const results = await knex('users')
       .where({ id })
 
+      // não retornar senha ao front-end
+      results[0].password = undefined
       return response.json(results);
 
     } catch (error) {
