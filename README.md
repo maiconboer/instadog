@@ -6,7 +6,7 @@ Projeto simulando instagram (para cães)
 # Back-end
 
 * [Tecnologias](#computer-tecnologias)
-* [Banco de dados](🏦🎲-banco-de-dados)
+* [Banco de dados](#:bank::game_die:-banco-de-dados)
 * [Funcionalidades](#rocket-funcionalidades)
 * [Como rodar/iniciar o servidor](#construction_worker-como-rodar-o-servidor)
 
