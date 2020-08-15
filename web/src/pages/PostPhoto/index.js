@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom';
 import api from '../../services/api';
 
 import { UserContext } from '../../contexts/UserContext';
+import Head from '../../components/Head';
 import useForm from '../../hooks/useForm';
 import UserHeader from '../../components/UserHeader';
 import Input from '../../components/Input';
@@ -87,49 +88,52 @@ const PostPhoto = () => {
   }
 
   return (
-    <Container className='container animeLeft'>
-      <UserHeader title={'Postar foto'} />
-     
-     <div className='container-upload'>
-        <form onSubmit={handleSubmit}>
+    <>
+      <Head title='Postar foto' />
+      <Container className='container animeLeft'>
+        <UserHeader title={'Postar foto'} />
+      
+      <div className='container-upload'>
+          <form onSubmit={handleSubmit}>
 
-          <Input 
-            label='Descricão'
-            type='text'
-            name='description'
-            {...description}
-          />
-
-          <label>máx. 2MB
-            <input 
-              type='file' 
-              name='image_url' 
-              id='image_url' 
-              className='file'
-              onChange={handleImageUpload}
-              accept="image/png, image/jpeg, image/pjpeg, image/jpg, image/gif"
+            <Input 
+              label='Descricão'
+              type='text'
+              name='description'
+              {...description}
             />
-          </label>
 
-          {loading 
-           ? <Button disabled>Enviando...</Button>
-           : <Button>Enviar</Button>
-          }
+            <label>máx. 2MB
+              <input 
+                type='file' 
+                name='image_url' 
+                id='image_url' 
+                className='file'
+                onChange={handleImageUpload}
+                accept="image/png, image/jpeg, image/pjpeg, image/jpg, image/gif"
+              />
+            </label>
 
-          {error && <Error error={error} />}
-        </form>
-        
-        <div>
-          {image.preview && 
-            <div 
-              className='preview'
-              style={{backgroundImage: `url('${image.preview}')`}}
-            >
-            </div>
-          }
+            {loading 
+            ? <Button disabled>Enviando...</Button>
+            : <Button>Enviar</Button>
+            }
+
+            {error && <Error error={error} />}
+          </form>
+          
+          <div>
+            {image.preview && 
+              <div 
+                className='preview'
+                style={{backgroundImage: `url('${image.preview}')`}}
+              >
+              </div>
+            }
+          </div>
         </div>
-      </div>
-    </Container>
+      </Container>
+    </>
   )
 }
 

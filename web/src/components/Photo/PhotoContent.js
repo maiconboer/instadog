@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { UserContext } from '../../contexts/UserContext';
 import PhotoComments from '../../components/Photo/PhotoComments';
 import PhotoDelete from './PhotoDelete';
+import SkeletonImage from '../SkeletonImage';
 
 import { formatDate } from '../../utils/formatDate';
 
@@ -17,21 +18,22 @@ const PhotoContent = ({dataPhotos}) => {
     <Container>
       <div className='image'> 
         {dataPhoto && 
-        <img 
-          src={dataPhoto[0].image_url} 
-          alt={dataPhoto[0].description}
-        />}
+          <SkeletonImage 
+            src={dataPhoto[0].image_url} 
+            alt={dataPhoto[0].description} 
+          />
+        }
       </div>
          
       {dataPhoto && 
         <div className='details'>
           <div>
             <div className='author'>
-
+       
               {user.data && user.data.username === dataPhoto[0].username
                 ? <PhotoDelete photoID={dataPhoto[0].id}/>
 
-                : <Link to={`/users/${dataPhoto[0].username}`}>
+                : <Link to={`/user/${dataPhoto[0].user_id}/${dataPhoto[0].username}`}>
                     @{dataPhoto[0].username}
                   </Link>
               }

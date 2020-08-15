@@ -2,6 +2,8 @@ import React from 'react';
 
 import api from '../../services/api';
 
+import Error from '../Error';
+
 import { Container } from './styles.PhotoDelete';
 
 const PhotoDelete = ({ photoID }) => {
@@ -46,6 +48,8 @@ const PhotoDelete = ({ photoID }) => {
         ? <button disabled>Deletando...</button>
         : <button onClick={handleDeletePhoto}>Deletar</button>
       }    
+
+      {error && <Error error={error} />}
     </Container>
   )
 }

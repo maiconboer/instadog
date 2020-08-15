@@ -1,5 +1,7 @@
 import React from 'react';
 
+import SkeletonImage from '../SkeletonImage';
+
 import { Container } from './styles';
 
 const FeedPhotosItem = ({photo, setModalPhoto}) => {
@@ -10,7 +12,10 @@ const FeedPhotosItem = ({photo, setModalPhoto}) => {
 
   return (
     <Container onClick={handleClick}>
-      <img src={photo.image_url} alt={photo.description}/>
+      <SkeletonImage
+        src={photo.image_url} 
+        alt={photo.description} 
+      />
       <span>Acessar</span>
     </Container>
   )

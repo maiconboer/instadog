@@ -1,6 +1,7 @@
 import React from 'react';
 import api from '../../services/api';
 
+import Head from '../../components/Head';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 import Error from '../../components/Error';
@@ -59,42 +60,45 @@ const CreateAccount = () => {
   }
 
   return (
-    <Container className='animeLeft'>
-      <div className='container-form'>
-        <h1 className='title'>Cadastre-se</h1>
+    <>
+      <Head title='Cadastro' />
+      <Container className='animeLeft'>
+        <div className='container-form'>
+          <h1 className='title'>Cadastre-se</h1>
 
-        <form onSubmit={handleCreateUser}>
-          <Input 
-            label='Usuário'
-            type='text'
-            name='username'
-            {...username}
-          />
+          <form onSubmit={handleCreateUser}>
+            <Input 
+              label='Usuário'
+              type='text'
+              name='username'
+              {...username}
+            />
 
-          <Input 
-            label='Email'
-            type='email'
-            name='email'
-            {...email}
-          />
+            <Input 
+              label='Email'
+              type='email'
+              name='email'
+              {...email}
+            />
 
-          <Input 
-            label='Senha'
-            type='password'
-            name='password'
-            {...password}
-          />
+            <Input 
+              label='Senha'
+              type='password'
+              name='password'
+              {...password}
+            />
 
-          {loading 
-           ? <Button disabled>Cadastrando...</Button>
-           : <Button type='submit'>Cadastrar</Button>
-          }
-          
-          {error && <Error error={error} />}
+            {loading 
+            ? <Button disabled>Cadastrando...</Button>
+            : <Button type='submit'>Cadastrar</Button>
+            }
+            
+            {error && <Error error={error} />}
 
-        </form>
-      </div>
-    </Container>
+          </form>
+        </div>
+      </Container>
+    </>
   )
 }
 

@@ -11,9 +11,8 @@ import CreateAccount from '../pages/CreateAccount';
 import MyAccount from '../pages/MyAccount';
 import PostPhoto from '../pages/PostPhoto';
 import Statistics from '../pages/Statistics';
-
-// components
-import LostPassword from '../components/LostPassword';;
+import UserProfile from '../pages/UserProfile';
+import LostPassword from '../pages/LostPassword';;
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
   const { login } = React.useContext(UserContext);
@@ -36,11 +35,14 @@ const Routes = () => {
   return (
     <Switch>  
      
+      {/* private routes */}
       <PrivateRoute path='/' exact component={Home} />
       <PrivateRoute path='/my-account' component={MyAccount} />
       <PrivateRoute path='/user/post-photo' component={PostPhoto} />
       <PrivateRoute path='/user/statistics' component={Statistics} />
+      <PrivateRoute path='/user/:id/:user' component={UserProfile} />
 
+      {/* public routes */}
       <Route path='/create-account' component={CreateAccount} />
       <Route path='/login' exact component={Login} />
       <Route path='/login/lost-password' component={LostPassword} />

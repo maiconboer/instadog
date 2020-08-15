@@ -1,50 +1,68 @@
 import React from 'react';
 import api from '../../services/api';
 
-import { UserContext } from '../../contexts/UserContext';
 import FeedPhotosItem from '../FeedPhotosItem';
 import Error from '../Error';
 import Loading from '../Loading';
 
 import { Container } from './styles';
 
-const FeedPhotos = ({ setModalPhoto }) => {
-  const { data } = React.useContext(UserContext);
-
+const FeedPhotos = ({ userID, page, setModalPhoto, setInfinite }) => {
   const [error, setError] = React.useState(null);
   const [loading, setLoading] = React.useState(false);
-  const [dataPhotos, setDataPhotos] = React.useState([])
+  const [dataPhotos, setDataPhotos] = React.useState([]);
 
   React.useEffect(() => {
 
     const token = window.localStorage.getItem('@dog:token');
-    const page = 1
-    // const id = 1
-
+  
     try {
+      setError(null);
+      setLoading(true);
+
       if(token) {
         async function getAllPhotos() {
-          const response = await api.get(`/photos?&page=${page}`, {
+
+          let url;
+          const showTotal = 9
+
+          if(userID === undefined) {
+            url = `/photos?&page=${page}`
+          } else {
+            url = `/photos?user_id=${userID}&page=${page}`
+          }
+
+          const response = await api.get(url, {
             headers: {
               Authorization: `Bearer ${token}`,
               cache: 'no-store'
             }
           })
+        
+          if(response && response.status === 200 && response.data.length < showTotal) {
+            setInfinite(false);
+          }
 
           setDataPhotos((dataPhotos) => response.data)    
         }
+
         getAllPhotos();
       }   
     } catch (error) {
-      
+      setError(error);
+
+    } finally {
+      setLoading(false);
     }
-  },[])
+  },[page, setInfinite, userID])
 
   if(error) return <Error error={error} />
-  if(loading) return <Loading />
 
   return (
     <>
+      {error && <Error error={error} />}
+      {loading && <Loading />}
+
       {dataPhotos.length > 0 
       ? 
         <Container className='animeLeft'>   

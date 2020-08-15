@@ -19,6 +19,9 @@ const FeedModal = ({photo, setModalPhoto}) => {
     const id = photo.id
 
     try {
+      setError(null);
+      setLoading(true);
+
       if(token) {
         async function getAllPhotos() {
           const response = await api.get(`/photos/${id}`, {
@@ -34,6 +37,8 @@ const FeedModal = ({photo, setModalPhoto}) => {
       }        
     } catch (error) {
       setError(error)
+    } finally {
+      setLoading(false);
     }
 
   },[photo])
@@ -50,7 +55,6 @@ const FeedModal = ({photo, setModalPhoto}) => {
       {loading && <Loading />}
 
       {dataPhotos && <PhotoContent dataPhotos={dataPhotos} />}
-      {/* <img src={photo.image_url} alt=""/> */}
     </Container>
   )
 }

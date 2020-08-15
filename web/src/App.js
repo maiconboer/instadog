@@ -14,9 +14,11 @@ import './global.css';
 function App() {
   return (
     <BrowserRouter>
-      <UserAuth>
+      <UserAuth>    
         <Header />
-        <Routes />
+        <main className='app-body'>
+          <Routes />
+        </main> 
         <Footer />
       </UserAuth>
     </BrowserRouter>

@@ -10,17 +10,14 @@ import { Form } from './styles.PhotoCommentsForm';
 
 const PhotoCommentsForm = ({photoID, setComments}) => {
   const { data } = React.useContext(UserContext);
-
   const [comment, setComment] = React.useState('');
   const [error, setError] = React.useState(null);
-  const [loading, setLoading] = React.useState(null);
 
   async function handleSubmit(event) {
     event.preventDefault();
 
     try {
       setError(null);
-      setLoading(true);
 
       const token = window.localStorage.getItem('@dog:token');   
 
@@ -51,9 +48,7 @@ const PhotoCommentsForm = ({photoID, setComments}) => {
 
     } catch (error) {
       setError(error);
-    } finally {
-      setLoading(false);
-    }
+    } 
   }
 
   return (

@@ -7,6 +7,7 @@
   --color4: #ffffff;
   --color5: #eeeeee;
   --color6: #ff3311;
+  --color7: #764701;
 }
 
 * {
@@ -18,6 +19,18 @@ body {
   margin: 0px;
   color: var(--color2);
   font-family: var(--font-first);
+}
+
+/* mantendo footer no fim da página */
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh + 10rem);
+}
+
+/* mantendo footer no fim da página */
+.app-body {
+  flex: 1;
 }
 
 h1, h2, h3, h4, p {
@@ -59,7 +72,7 @@ a {
 }
 
 .mainContainer {
-  margin-top: 4rem;
+  margin-top: 2rem;
 }
 
 .title {
